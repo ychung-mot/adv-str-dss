@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using StrDss.Api.Authorization;
 
 namespace StrDss.Api.Controllers
 {
@@ -18,6 +19,7 @@ namespace StrDss.Api.Controllers
             _logger = logger;
         }
 
+        [ApiAuthorize()]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {

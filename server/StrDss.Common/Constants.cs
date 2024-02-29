@@ -39,17 +39,37 @@
         public const string Date = "D";
     }
 
-    public static class Roles
-    {
-        public const string Admin = "Admin";
-        public const string Applicant = "Applicant";
-    }
-
     public static class CodeSet
     {
         public const string Role = "ROLE";
         public const string ZoneType = "ZONE_TYPE";
         public const string StrAffiliate = "STR_AFFILIATE";
         public const string ComplianceStatus = "COMPLIANCE_STATUS";
+    }
+
+    public static class StrDssClaimTypes
+    {
+        public const string Permission = "str_dss_permission";
+        public const string IdirUserGuid = "idir_user_guid";
+        public const string BceidUserGuid = "bceid_user_guid";
+        public const string StrDssUserGuid = "str_dss_user_guid";
+        public const string IdirUsername = "idir_username";
+        public const string BceidUsername = "bceid_username";
+        public const string StrDssUsername = "str_dss_username";
+        public const string IdentityProvider = "identity_provider";
+        public const string BceidBusinessName = "bceid_business_name";
+        public const string BceidBusinessGuid = "bceid_business_guid";
+        public const string EmailVerified = "email_verified";
+        public const string FullName = "full_name";
+        public const string Title = "title";
+        public const string SecurityIdentifierId = "security_identifier_id";
+        public const string Expired = "expired";
+        public const string StrDssCred = "str_dss_cred";
+        public const string ClientId = "clientId";
+
+        public static string GetSimpleName(string fullName)
+        {
+            return fullName.Contains("/") ? fullName.Substring(fullName.LastIndexOf("/") + 1) : fullName;
+        }
     }
 }

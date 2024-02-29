@@ -8,8 +8,6 @@ namespace StrDss.Model
         int Id { get; set; }
         string Username { get; set; }
         string LastName { get; set; }
-        string Role { get; set; }
-        string Token { get; set; }
         void LoadUserSession(ClaimsPrincipal user);
         void AddClaim(ClaimsPrincipal user, string claimType, string value);
     }
@@ -19,8 +17,6 @@ namespace StrDss.Model
         public int Id { get; set; }
         public string Username { get; set; } = "";
         public string LastName { get; set; } = "";
-        public string Role { get; set; }
-        public string Token { get; set; } = "";
         public void LoadUserSession(ClaimsPrincipal user)
         {
             if (user == null)
