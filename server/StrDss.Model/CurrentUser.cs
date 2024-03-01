@@ -15,6 +15,7 @@ namespace StrDss.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName { get; set; }
+        public string DisplayName { get; set; }
         public bool IsActive { get; set; }
         public string AccessRequestStatus { get; set; }
 
@@ -33,6 +34,7 @@ namespace StrDss.Model
         public string FirstName { get; set; } = "";
         public string LastName { get; set; } = "";
         public string FullName { get; set; } = "";
+        public string DisplayName { get; set; } = "";
         public bool IsActive { get; set; } = true;
         public string AccessRequestStatus { get; set; } = "";
 
@@ -47,6 +49,7 @@ namespace StrDss.Model
             EmailAddress = user.GetCustomClaim(ClaimTypes.Email);
             FirstName = textInfo.ToTitleCase(user.GetCustomClaim(ClaimTypes.GivenName));
             LastName = textInfo.ToTitleCase(user.GetCustomClaim(ClaimTypes.Surname));
+            DisplayName = user.GetCustomClaim(StrDssClaimTypes.DisplayName);
 
             switch (UserType)
             {

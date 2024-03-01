@@ -89,6 +89,7 @@
         public const string BceidBusinessGuid = "bceid_business_guid";
         public const string EmailVerified = "email_verified";
         public const string FullName = "full_name";
+        public const string DisplayName = "display_name";
         public const string Title = "title";
         public const string SecurityIdentifierId = "security_identifier_id";
         public const string Expired = "expired";
