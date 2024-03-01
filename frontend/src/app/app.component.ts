@@ -1,26 +1,23 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { LayoutComponent } from './common/components/layout/layout.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AuthApiService } from './common/services/api/auth-api.service';
-import { MessageService } from 'primeng/api';
-import { StoreService } from './common/services/store.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { LayoutComponent } from './common/layout/layout.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    LayoutComponent,
-    HttpClientModule,
-  ],
-  providers: [AuthApiService, MessageService, StoreService],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+	selector: 'app-root',
+	standalone: true,
+	imports: [
+		// RouterOutlet,
+		// BrowserModule,
+		CommonModule,
+		// BrowserAnimationsModule,
+		LayoutComponent
+	],
+	templateUrl: './app.component.html',
+	styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor(private _storeService: StoreService) { }
+	title = 'str-dss-ui';
 }

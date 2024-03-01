@@ -1,4 +1,9 @@
 export const environment = {
-    production: true,
-    apiUrl: 'http://localhost:5000',
+    SSO_CLIENT: "",
+    SSO_REALM: "",
+    SSO_HOST: "",
+    ENV: "",
+    ENV_NAME: "",
+    VERSION: "",
+    SM_LOGOFF_URL: "",
 };

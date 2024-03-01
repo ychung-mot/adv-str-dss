@@ -1,27 +1,31 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { JwtModule } from '@auth0/angular-jwt';
-import { environment } from '../environments/environment';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './common/consts/auth-interceptor.const';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { KeycloakService } from 'keycloak-angular';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor])),
-    importProvidersFrom(JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: [environment.apiUrl],
-      },
-    })),
-    importProvidersFrom([BrowserAnimationsModule]),
-  ],
+	providers: [provideRouter(routes),
+	{
+		provide: APP_INITIALIZER,
+		useFactory: initializeKeycloak,
+		multi: true,
+		deps: [KeycloakService]
+	}],
 };
 
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
+function initializeKeycloak(keycloak: KeycloakService) {
+	return () => keycloak.init({
+		config: {
+			url: 'http://localhost:8080',
+			realm: 'your-realm',
+			clientId: 'your-client-id'
+		},
+		initOptions: {
+			onLoad: 'check-sso',
+			silentCheckSsoRedirectUri:
+				window.location.origin + '/assets/silent-check-sso.html'
+		}
+	});
+
 }
