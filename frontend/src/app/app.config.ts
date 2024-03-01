@@ -6,29 +6,30 @@ import { KeycloakService } from 'keycloak-angular';
 import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
-	providers: [provideRouter(routes),
-		KeycloakService,
-	{
-		provide: APP_INITIALIZER,
-		useFactory: initializeKeycloak,
-		multi: true,
-		deps: [KeycloakService]
-	}
-	],
+    providers: [
+        provideRouter(routes),
+        KeycloakService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeKeycloak,
+            multi: true,
+            deps: [KeycloakService],
+        },
+    ],
 };
 
 function initializeKeycloak(keycloak: KeycloakService) {
-	return () => keycloak.init({
-		config: {
-			url: environment.SSO_HOST,
-			realm: environment.SSO_REALM,
-			clientId: environment.SSO_CLIENT
-		},
-		initOptions: {
-			onLoad: 'check-sso',
-			silentCheckSsoRedirectUri:
-				window.location.origin + '/assets/silent-check-sso.html'
-		}
-	});
-
+    return () =>
+        keycloak.init({
+            config: {
+                url: environment.SSO_HOST,
+                realm: environment.SSO_REALM,
+                clientId: environment.SSO_CLIENT,
+            },
+            initOptions: {
+                onLoad: 'login-required',
+                pkceMethod: 'S256',
+                silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html',
+            },
+        });
 }
