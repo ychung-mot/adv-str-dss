@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LayoutComponent } from './common/layout/layout.component';
 import { CommonModule } from '@angular/common';
+import { KeycloakAngularModule } from 'keycloak-angular';
 
 @Component({
 	selector: 'app-root',
 	standalone: true,
 	imports: [
-		// RouterOutlet,
-		// BrowserModule,
 		CommonModule,
-		// BrowserAnimationsModule,
+		KeycloakAngularModule,
 		LayoutComponent
 	],
 	templateUrl: './app.component.html',

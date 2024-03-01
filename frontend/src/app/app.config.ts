@@ -6,12 +6,14 @@ import { KeycloakService } from 'keycloak-angular';
 
 export const appConfig: ApplicationConfig = {
 	providers: [provideRouter(routes),
-	{
-		provide: APP_INITIALIZER,
-		useFactory: initializeKeycloak,
-		multi: true,
-		deps: [KeycloakService]
-	}],
+		// 	KeycloakService,
+		// {
+		// 	provide: APP_INITIALIZER,
+		// 	useFactory: initializeKeycloak,
+		// 	multi: true,
+		// 	deps: [KeycloakService]
+		// }
+	],
 };
 
 function initializeKeycloak(keycloak: KeycloakService) {
