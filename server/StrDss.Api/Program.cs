@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
@@ -6,6 +7,7 @@ using NetCore.AutoRegisterDi;
 using StrDss.Api.Authentication;
 using StrDss.Common;
 using StrDss.Data;
+using StrDss.Data.Mappings;
 using StrDss.Model;
 using StrDss.Service;
 using System.Reflection;
@@ -58,6 +60,19 @@ builder.Services.AddSingleton<IFieldValidatorService, FieldValidatorService>();
 
 //RegexDefs as Singleton
 builder.Services.AddSingleton<RegexDefs>();
+
+builder.Services.AddHttpClient();
+
+var mappingConfig = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new EntityToModelProfile());
+    cfg.AddProfile(new ModelToEntityProfile());
+    cfg.AddProfile(new ModelToModelProfile());
+});
+
+var mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 
 //Add logging
 builder.Services.AddLogging(builder => builder.AddConsole());

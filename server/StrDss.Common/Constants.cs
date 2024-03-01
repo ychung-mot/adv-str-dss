@@ -47,6 +47,34 @@
         public const string ComplianceStatus = "COMPLIANCE_STATUS";
     }
 
+    public static class StrDssUserTypes
+    {
+        public const string IDIR = "idir";
+        public const string BceidBusiness = "bceidbusiness";
+        public const string External = "external";
+        public const string Aps = "aps";
+
+        public const string StrDss = "strdss";
+        public static string GetBceidUserType(string userType)
+        {
+            switch (userType.ToLowerInvariant())
+            {
+                case StrDssUserTypes.IDIR:
+                    return BceidUserTypes.Internal;
+                case StrDssUserTypes.BceidBusiness:
+                    return BceidUserTypes.Business;
+                default:
+                    return "Unknown";
+            }
+        }
+    }
+
+    public static class BceidUserTypes
+    {
+        public const string Internal = "internal";
+        public const string Business = "business";
+    }
+
     public static class StrDssClaimTypes
     {
         public const string Permission = "str_dss_permission";
@@ -61,6 +89,7 @@
         public const string BceidBusinessGuid = "bceid_business_guid";
         public const string EmailVerified = "email_verified";
         public const string FullName = "full_name";
+        public const string DisplayName = "display_name";
         public const string Title = "title";
         public const string SecurityIdentifierId = "security_identifier_id";
         public const string Expired = "expired";
