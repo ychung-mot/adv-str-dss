@@ -3,25 +3,26 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { KeycloakService } from 'keycloak-angular';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
 	providers: [provideRouter(routes),
-		// 	KeycloakService,
-		// {
-		// 	provide: APP_INITIALIZER,
-		// 	useFactory: initializeKeycloak,
-		// 	multi: true,
-		// 	deps: [KeycloakService]
-		// }
+		KeycloakService,
+	{
+		provide: APP_INITIALIZER,
+		useFactory: initializeKeycloak,
+		multi: true,
+		deps: [KeycloakService]
+	}
 	],
 };
 
 function initializeKeycloak(keycloak: KeycloakService) {
 	return () => keycloak.init({
 		config: {
-			url: 'http://localhost:8080',
-			realm: 'your-realm',
-			clientId: 'your-client-id'
+			url: environment.SSO_HOST,
+			realm: environment.SSO_REALM,
+			clientId: environment.SSO_CLIENT
 		},
 		initOptions: {
 			onLoad: 'check-sso',
