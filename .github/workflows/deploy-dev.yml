@@ -42,10 +42,10 @@ jobs:
     - name: Build
       run: |
         pwd
-        dotnet build ./server/AdvSol.sln
+        dotnet build ./server/server.sln
 
     - name: Test
-      run: dotnet test ./server/AdvSol.sln --no-build
+      run: dotnet test ./server/server.sln --no-build
 
   build-frontend:
     needs: [test-backend]
